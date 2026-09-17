@@ -1,0 +1,25 @@
+{
+  "dataset_name": "ShiftGuard-SecCorpus",
+  "schema_version": "2.0.0",
+  "total_clean_samples": 1194,
+  "splits": {
+    "train": 887,
+    "validation": 101,
+    "test": 206
+  },
+  "tokens": {
+    "total_estimated_tokens": 305053,
+    "code_tokens": 171818,
+    "natural_language_tokens": 95498,
+    "security_taxonomy_tokens": 37737,
+    "avg_tokens_per_sample": 255.5
+  },
+  "coverage": {
+    "unique_tasks_covered": 12,
+    "unique_languages": 11,
+    "unique_frameworks": 20,
+    "unique_archetypes": 19,
+    "unique_cwe_families": 30,
+    "unique_owasp_categories": 9
+  }
+}

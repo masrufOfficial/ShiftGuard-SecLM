@@ -1,0 +1,25 @@
+{
+  "input_file": "datasets\\processed\\corpus_normalized.jsonl",
+  "output_file": "datasets\\processed\\corpus_deduped.jsonl",
+  "total_records_read": 2396,
+  "exact_duplicates_pruned": 623,
+  "near_duplicates_pruned_lsh": 579,
+  "total_duplicates_pruned": 1202,
+  "duplication_rate_pct": 50.17,
+  "unique_clean_records_kept": 1194,
+  "pruned_by_task": {
+    "repair": 107,
+    "vuln_analysis": 104,
+    "cwe_classify": 116,
+    "verify": 104,
+    "capability_plan": 103,
+    "owasp_map": 109,
+    "evidence_analysis": 89,
+    "risk_assess": 94,
+    "agent_plan": 96,
+    "threat_analysis": 97,
+    "security_requirement": 96,
+    "security_plan": 87
+  },
+  "lsh_jaccard_threshold": 0.85
+}

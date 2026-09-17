@@ -1,0 +1,367 @@
+{
+  "pipeline": "ShiftGuard-SecLM Tokenizer Build",
+  "author": "Masruf Rahman",
+  "vocab_size_configured": 32000,
+  "vocab_size_actual": 2903,
+  "special_tokens_count": 44,
+  "training_partition_path": "datasets\\manifests\\train.jsonl",
+  "corpus_bytes": 1146696,
+  "total_train_samples": 887,
+  "total_train_tokens": 280803,
+  "mean_tokens_per_sample": 316.6,
+  "min_tokens_per_sample": 225,
+  "max_tokens_per_sample": 387,
+  "avg_bytes_per_token": 2.565,
+  "compression_benchmarks": {
+    "Python Parameterized SQL": {
+      "num_chars": 76,
+      "num_bytes": 76,
+      "num_tokens": 21,
+      "bytes_per_token": 3.62,
+      "tokens_preview": [
+        "c",
+        "ursor",
+        ".",
+        "execute",
+        "('",
+        "SELECT",
+        "\u0120id",
+        ",",
+        "\u0120role",
+        "\u0120FROM",
+        "\u0120user",
+        "s",
+        "\u0120WHERE",
+        "\u0120username",
+        "\u0120="
+      ]
+    },
+    "Python Vulnerable Raw SQL": {
+      "num_chars": 62,
+      "num_bytes": 62,
+      "num_tokens": 19,
+      "bytes_per_token": 3.26,
+      "tokens_preview": [
+        "c",
+        "ursor",
+        ".",
+        "execute",
+        "('",
+        "SELECT",
+        "\u0120*",
+        "\u0120FROM",
+        "\u0120user",
+        "s",
+        "\u0120WHERE",
+        "\u0120id",
+        "\u0120=",
+        "\u0120'",
+        "\u0120+"
+      ]
+    },
+    "CWE Taxonomy String": {
+      "num_chars": 92,
+      "num_bytes": 92,
+      "num_tokens": 34,
+      "bytes_per_token": 2.71,
+      "tokens_preview": [
+        "CWE",
+        "-",
+        "89",
+        ":",
+        "\u0120Improper",
+        "\u0120N",
+        "e",
+        "ut",
+        "r",
+        "ali",
+        "zation",
+        "\u0120of",
+        "\u0120S",
+        "p",
+        "ec"
+      ]
+    },
+    "OWASP Taxonomy String": {
+      "num_chars": 73,
+      "num_bytes": 73,
+      "num_tokens": 20,
+      "bytes_per_token": 3.65,
+      "tokens_preview": [
+        "A",
+        "03",
+        ":",
+        "2021",
+        "-",
+        "Injection",
+        "\u0120and",
+        "\u0120API",
+        "1",
+        ":",
+        "2023",
+        "\u0120",
+        "Broken",
+        "\u0120Object",
+        "\u0120Level"
+      ]
+    },
+    "Special Boundary Tokens": {
+      "num_chars": 85,
+      "num_bytes": 85,
+      "num_tokens": 9,
+      "bytes_per_token": 9.44,
+      "tokens_preview": [
+        "<SEC_CONTEXT>",
+        "\u0120",
+        "<LANG:python>",
+        "\u0120",
+        "<FRAMEWORK:fastapi>",
+        "\u0120",
+        "<TASK:THREAT_ANALYSIS>",
+        "\u0120",
+        "<SCHEMA_START>"
+      ]
+    },
+    "JavaScript DOMPurify Sanitization": {
+      "num_chars": 77,
+      "num_bytes": 77,
+      "num_tokens": 37,
+      "bytes_per_token": 2.08,
+      "tokens_preview": [
+        "D",
+        "OMPurify",
+        ".",
+        "s",
+        "anitize",
+        "(",
+        "user",
+        "Input",
+        ",",
+        "\u0120{",
+        "\u0120R",
+        "E",
+        "T",
+        "U",
+        "R"
+      ]
+    },
+    "C Buffer Overflow & Bound Guard": {
+      "num_chars": 71,
+      "num_bytes": 71,
+      "num_tokens": 36,
+      "bytes_per_token": 1.97,
+      "tokens_preview": [
+        "i",
+        "f",
+        "\u0120(",
+        "len",
+        "\u0120>=",
+        "\u0120size",
+        "of",
+        "(",
+        "de",
+        "st",
+        "_",
+        "bu",
+        "f",
+        "))",
+        "\u0120{"
+      ]
+    },
+    "Hex/Bytecode Shellcode": {
+      "num_chars": 52,
+      "num_bytes": 52,
+      "num_tokens": 44,
+      "bytes_per_token": 1.18,
+      "tokens_preview": [
+        "\\",
+        "x",
+        "31",
+        "\\",
+        "x",
+        "c",
+        "0",
+        "\\",
+        "x",
+        "50",
+        "\\",
+        "x",
+        "68",
+        "\\",
+        "x"
+      ]
+    },
+    "JSON Evidence Finding": {
+      "num_chars": 66,
+      "num_bytes": 66,
+      "num_tokens": 35,
+      "bytes_per_token": 1.89,
+      "tokens_preview": [
+        "{\"",
+        "r",
+        "u",
+        "le",
+        "\":",
+        "\u0120\"",
+        "s",
+        "ec",
+        ".",
+        "a",
+        "udit",
+        ".",
+        "sql",
+        "i",
+        "\","
+      ]
+    }
+  },
+  "security_term_representation": {
+    "CWE": {
+      "in_vocabulary": true,
+      "subword_split": [
+        "CWE"
+      ],
+      "token_count": 1
+    },
+    "OWASP": {
+      "in_vocabulary": true,
+      "subword_split": [
+        "O",
+        "WASP"
+      ],
+      "token_count": 2
+    },
+    "vulnerability": {
+      "in_vocabulary": true,
+      "subword_split": [
+        "v",
+        "ulner",
+        "abil",
+        "ity"
+      ],
+      "token_count": 4
+    },
+    "injection": {
+      "in_vocabulary": true,
+      "subword_split": [
+        "in",
+        "jection"
+      ],
+      "token_count": 2
+    },
+    "buffer": {
+      "in_vocabulary": true,
+      "subword_split": [
+        "buffer"
+      ],
+      "token_count": 1
+    },
+    "overflow": {
+      "in_vocabulary": true,
+      "subword_split": [
+        "o",
+        "verflow"
+      ],
+      "token_count": 2
+    },
+    "sanitize": {
+      "in_vocabulary": false,
+      "subword_split": [
+        "s",
+        "anitize"
+      ],
+      "token_count": 2
+    },
+    "authentication": {
+      "in_vocabulary": true,
+      "subword_split": [
+        "auth",
+        "enti",
+        "cation"
+      ],
+      "token_count": 3
+    },
+    "authorization": {
+      "in_vocabulary": true,
+      "subword_split": [
+        "authorization"
+      ],
+      "token_count": 1
+    },
+    "deserialize": {
+      "in_vocabulary": false,
+      "subword_split": [
+        "de",
+        "seriali",
+        "ze"
+      ],
+      "token_count": 3
+    },
+    "payload": {
+      "in_vocabulary": true,
+      "subword_split": [
+        "payload"
+      ],
+      "token_count": 1
+    },
+    "tampering": {
+      "in_vocabulary": true,
+      "subword_split": [
+        "t",
+        "ampering"
+      ],
+      "token_count": 2
+    },
+    "privilege": {
+      "in_vocabulary": true,
+      "subword_split": [
+        "pri",
+        "vilege"
+      ],
+      "token_count": 2
+    },
+    "escalation": {
+      "in_vocabulary": false,
+      "subword_split": [
+        "es",
+        "cal",
+        "ation"
+      ],
+      "token_count": 3
+    },
+    "exploit": {
+      "in_vocabulary": false,
+      "subword_split": [
+        "ex",
+        "p",
+        "lo",
+        "it"
+      ],
+      "token_count": 4
+    },
+    "remediation": {
+      "in_vocabulary": false,
+      "subword_split": [
+        "re",
+        "med",
+        "i",
+        "ation"
+      ],
+      "token_count": 4
+    },
+    "mitigation": {
+      "in_vocabulary": false,
+      "subword_split": [
+        "mi",
+        "ti",
+        "g",
+        "ation"
+      ],
+      "token_count": 4
+    }
+  },
+  "vocabulary_recommendation_for_1b": {
+    "recommended_vocab_size": 32000,
+    "rationale": "For a ~1B parameter decoder-only model (d_model=2048, layers=24), a 32,000 vocabulary strikes an optimal parameter budget balance: embedding parameters = 32,000 * 2,048 = 65,536,000 (~65.5M parameters, or 6.5% of total model capacity). An excessively large vocabulary (e.g., 64,000 or 100,000) would consume >130M parameters solely on the token embedding table and final lm_head un-embedding projection without adding contextual depth, diluting gradients across sparse tokens. Byte-level BPE guarantees 0% OOV for arbitrary hex payloads, binary shellcode, and novel syntax, while 32k enables compact subword representations for standard code identifiers and specialized security taxonomies."
+  }
+}

@@ -22,6 +22,7 @@ TASK_TOKENS = {
     "risk_assess": "<TASK:RISK_ASSESS>",
     "vuln_analysis": "<TASK:VULN_ANALYSIS>",
     "security_plan": "<TASK:SECURITY_PLAN>",
+    "capability_plan": "<TASK:CAPABILITY_PLAN>",
     "agent_plan": "<TASK:AGENT_PLAN>",
     "evidence_analysis": "<TASK:EVIDENCE_ANALYSIS>",
     "repair": "<TASK:REPAIR>",

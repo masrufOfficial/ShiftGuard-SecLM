@@ -1,0 +1,20 @@
+{
+  "input_file": "datasets\\processed\\corpus_raw.jsonl",
+  "output_normalized_file": "datasets\\processed\\corpus_normalized.jsonl",
+  "total_records_audited": 2396,
+  "valid_records_passed": 2396,
+  "invalid_records_rejected": 0,
+  "quality_pass_rate_pct": 100.0,
+  "check_pass_counts": {
+    "valid_json": 2396,
+    "valid_schema": 2396,
+    "non_empty_code": 2396,
+    "non_empty_prompt": 2396,
+    "valid_cwe": 2396,
+    "valid_owasp": 2396,
+    "has_provenance": 2396,
+    "has_license": 2396,
+    "consistent_severity": 2396
+  },
+  "error_distribution": {}
+}

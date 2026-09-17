@@ -1,0 +1,144 @@
+{
+  "dataset_name": "ShiftGuard-SecCorpus",
+  "version": "2.0.0",
+  "total_clean_samples": 1194,
+  "total_raw_samples_audited": 2396,
+  "duplicates_pruned": 1202,
+  "duplication_rate_pct": 50.17,
+  "split_counts": {
+    "train": 887,
+    "validation": 101,
+    "test": 206
+  },
+  "token_counts": {
+    "total_estimated_tokens": 305053,
+    "code_tokens": 171818,
+    "natural_language_tokens": 95498,
+    "security_taxonomy_tokens": 37737,
+    "avg_tokens_per_sample": 255.5
+  },
+  "provenance_breakdown": {
+    "authentic_real_samples": 9,
+    "controlled_synthetic_samples": 1185,
+    "real_vs_synthetic_ratio": "0.75% Real / 99.25% Synthetic",
+    "sources": {
+      "juliet_test_suite_v1.3": 3,
+      "cvefixes": 8,
+      "synthetic_shiftguard": 1182,
+      "mitre_cwe": 1
+    }
+  },
+  "coverage_metrics": {
+    "unique_tasks_covered": 12,
+    "unique_languages": 11,
+    "unique_frameworks": 20,
+    "unique_archetypes": 19,
+    "unique_cwe_families": 30,
+    "unique_owasp_categories": 9
+  },
+  "distributions": {
+    "tasks": {
+      "vuln_analysis": 94,
+      "threat_analysis": 103,
+      "security_requirement": 96,
+      "cwe_classify": 104,
+      "owasp_map": 103,
+      "risk_assess": 98,
+      "security_plan": 105,
+      "capability_plan": 97,
+      "agent_plan": 96,
+      "evidence_analysis": 103,
+      "repair": 99,
+      "verify": 96
+    },
+    "languages": {
+      "c": 59,
+      "cpp": 1,
+      "java": 56,
+      "javascript": 161,
+      "go": 103,
+      "php": 1,
+      "python": 598,
+      "csharp": 58,
+      "typescript": 103,
+      "sql": 53,
+      "agnostic": 1
+    },
+    "frameworks": {
+      "standard_library": 3,
+      "log4j": 1,
+      "react": 1,
+      "express": 104,
+      "net/http": 1,
+      "phpmailer": 1,
+      "fastapi": 353,
+      "django": 121,
+      "spring": 54,
+      "flask": 123,
+      "aspnet": 58,
+      "apollo": 52,
+      "grpc": 52,
+      "nextjs": 51,
+      "psycopg2": 53,
+      "websocket": 56,
+      "gin": 50,
+      "posix": 58,
+      "langchain": 1,
+      "standard": 1
+    },
+    "archetypes": {
+      "controlled_flaw": 3,
+      "real_world_cve": 8,
+      "banking": 111,
+      "healthcare": 120,
+      "ecommerce": 52,
+      "auth_service": 118,
+      "education": 53,
+      "saas_admin": 123,
+      "file_upload": 51,
+      "admin_dashboard": 58,
+      "rest_api": 124,
+      "graphql_api": 52,
+      "microservice": 52,
+      "cloud_webapp": 51,
+      "database_app": 53,
+      "chat_app": 56,
+      "payment_gateway": 50,
+      "iot_backend": 58,
+      "security_taxonomy": 1
+    },
+    "severity": {
+      "critical": 577,
+      "high": 616,
+      "medium": 1
+    },
+    "top_cwes": {
+      "CWE-862": 625,
+      "CWE-200": 296,
+      "CWE-89": 289,
+      "CWE-362": 213,
+      "CWE-770": 177,
+      "CWE-287": 175,
+      "CWE-915": 123,
+      "CWE-311": 120,
+      "CWE-798": 119,
+      "CWE-327": 118,
+      "CWE-285": 111,
+      "CWE-120": 59,
+      "CWE-352": 58,
+      "CWE-347": 58,
+      "CWE-319": 58
+    },
+    "owasp_categories": {
+      "A06:2021-Vulnerable and Outdated Components": 69,
+      "A03:2021-Injection": 340,
+      "A01:2021-Broken Access Control": 729,
+      "A02:2021-Cryptographic Failures": 296,
+      "A04:2021-Insecure Design": 452,
+      "A07:2021-Identification and Authentication Failures": 279,
+      "A10:2021-Server-Side Request Forgery": 52,
+      "A05:2021-Security Misconfiguration": 51,
+      "A09:2021-Security Logging and Monitoring Failures": 50
+    }
+  }
+}

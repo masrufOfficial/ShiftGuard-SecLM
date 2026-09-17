@@ -1,0 +1,31 @@
+{
+  "task_counts": {
+    "vuln_analysis": 94,
+    "threat_analysis": 103,
+    "security_requirement": 96,
+    "cwe_classify": 104,
+    "owasp_map": 103,
+    "risk_assess": 98,
+    "security_plan": 105,
+    "capability_plan": 97,
+    "agent_plan": 96,
+    "evidence_analysis": 103,
+    "repair": 99,
+    "verify": 96
+  },
+  "total_samples": 1194,
+  "task_percentages": {
+    "vuln_analysis": 7.87,
+    "threat_analysis": 8.63,
+    "security_requirement": 8.04,
+    "cwe_classify": 8.71,
+    "owasp_map": 8.63,
+    "risk_assess": 8.21,
+    "security_plan": 8.79,
+    "capability_plan": 8.12,
+    "agent_plan": 8.04,
+    "evidence_analysis": 8.63,
+    "repair": 8.29,
+    "verify": 8.04
+  }
+}

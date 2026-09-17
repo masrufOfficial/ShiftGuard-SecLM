@@ -1,0 +1,30 @@
+{
+  "zero_leakage_guarantee_passed": true,
+  "train_samples": 887,
+  "val_samples": 101,
+  "test_samples": 206,
+  "held_out_generalization_archetypes": [
+    "payment_gateway",
+    "iot_backend"
+  ],
+  "cluster_overlaps": {
+    "train_val": [],
+    "train_test": [],
+    "val_test": []
+  },
+  "repository_overlaps": {
+    "train_val": [],
+    "train_test": [],
+    "val_test": []
+  },
+  "vulnerability_case_overlaps": {
+    "train_val": [],
+    "train_test": [],
+    "val_test": []
+  },
+  "test_set_quarantine": {
+    "status": "QUARANTINED_AND_FROZEN",
+    "total_test_samples": 206,
+    "held_out_archetype_samples": 108
+  }
+}

@@ -36,12 +36,21 @@ ALL_SPECIAL_TOKENS = (
         "<LANG:c>",
         "<LANG:cpp>",
         "<LANG:go>",
+        "<LANG:php>",
+        "<LANG:rust>",
+        "<LANG:ruby>",
+        "<LANG:csharp>",
         "<LANG:sql>",
         "<FRAMEWORK:fastapi>",
         "<FRAMEWORK:flask>",
         "<FRAMEWORK:django>",
         "<FRAMEWORK:express>",
         "<FRAMEWORK:spring>",
+        "<FRAMEWORK:actix>",
+        "<FRAMEWORK:rails>",
+        "<FRAMEWORK:aspnet>",
+        "<FRAMEWORK:gin>",
+        "<FRAMEWORK:standard_library>",
     ]
 )
 

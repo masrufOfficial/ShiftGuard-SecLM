@@ -115,7 +115,12 @@ def analyze_security_context(request: AnalyzeRequest):
     )
 
     prompt_str = payload.serialize_input()
-    input_ids = torch.tensor([tokenizer.encode(prompt_str).ids], device=device)
+    encoded_ids = tokenizer.encode(prompt_str).ids
+    if hasattr(model, "config") and hasattr(model.config, "vocab_size"):
+        v_limit = model.config.vocab_size
+        unk_id = tokenizer.token_to_id("<|unk|>") or 0
+        encoded_ids = [tid if tid < v_limit else unk_id for tid in encoded_ids]
+    input_ids = torch.tensor([encoded_ids], device=device)
 
     with torch.no_grad():
         gen_ids = model.generate(input_ids, max_new_tokens=128, temperature=0.2)

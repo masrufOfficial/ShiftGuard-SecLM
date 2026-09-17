@@ -1,0 +1,105 @@
+{
+  "juliet_test_suite_v1.3": {
+    "source_name": "juliet_test_suite_v1.3",
+    "count": 12,
+    "license": "CC0-1.0",
+    "is_synthetic": true,
+    "evidence_sources": [
+      "juliet_ground_truth"
+    ],
+    "languages": [
+      "c",
+      "cpp",
+      "java"
+    ],
+    "archetypes": [
+      "controlled_flaw"
+    ]
+  },
+  "cvefixes": {
+    "source_name": "cvefixes",
+    "count": 40,
+    "license": "CC-BY-4.0",
+    "is_synthetic": false,
+    "evidence_sources": [
+      "nvd_cve_advisory"
+    ],
+    "languages": [
+      "go",
+      "java",
+      "javascript",
+      "php",
+      "python"
+    ],
+    "archetypes": [
+      "real_world_cve"
+    ]
+  },
+  "mitre_cwe": {
+    "source_name": "mitre_cwe",
+    "count": 20,
+    "license": "CC-BY-4.0",
+    "is_synthetic": false,
+    "evidence_sources": [
+      "mitre_official_taxonomy"
+    ],
+    "languages": [
+      "agnostic"
+    ],
+    "archetypes": [
+      "security_taxonomy"
+    ]
+  },
+  "owasp_taxonomy": {
+    "source_name": "owasp_taxonomy",
+    "count": 20,
+    "license": "CC-BY-SA-4.0",
+    "is_synthetic": false,
+    "evidence_sources": [
+      "owasp_canonical_mapping"
+    ],
+    "languages": [
+      "agnostic"
+    ],
+    "archetypes": [
+      "security_taxonomy"
+    ]
+  },
+  "synthetic_shiftguard": {
+    "source_name": "synthetic_shiftguard",
+    "count": 2304,
+    "license": "Apache-2.0",
+    "is_synthetic": true,
+    "evidence_sources": [
+      "controlled_synthetic_generator"
+    ],
+    "languages": [
+      "c",
+      "csharp",
+      "go",
+      "java",
+      "javascript",
+      "python",
+      "sql",
+      "typescript"
+    ],
+    "archetypes": [
+      "admin_dashboard",
+      "auth_service",
+      "banking",
+      "chat_app",
+      "cloud_webapp",
+      "database_app",
+      "ecommerce",
+      "education",
+      "file_upload",
+      "graphql_api",
+      "healthcare",
+      "iot_backend",
+      "microservice",
+      "payment_gateway",
+      "rest_api",
+      "saas_admin"
+    ]
+  }
+}

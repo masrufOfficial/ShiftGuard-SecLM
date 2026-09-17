@@ -1,0 +1,461 @@
+{
+  "total_samples": 1194,
+  "sources": {
+    "juliet_test_suite_v1.3": 3,
+    "cvefixes": 8,
+    "synthetic_shiftguard": 1182,
+    "mitre_cwe": 1
+  },
+  "sample_provenance_index": [
+    {
+      "sample_id": "juliet-CWE120_Buffer_Copy__char_01-vuln",
+      "source": "juliet_test_suite_v1.3",
+      "source_id": "CWE120_Buffer_Copy__char_01",
+      "repository": "nist/juliet_test_suite",
+      "license": "CC0-1.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "juliet-CWE190_Integer_Overflow__int64_multiply_01-vuln",
+      "source": "juliet_test_suite_v1.3",
+      "source_id": "CWE190_Integer_Overflow__int64_multiply_01",
+      "repository": "nist/juliet_test_suite",
+      "license": "CC0-1.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "juliet-CWE476_NULL_Pointer_Dereference__String_01-vuln",
+      "source": "juliet_test_suite_v1.3",
+      "source_id": "CWE476_NULL_Pointer_Dereference__String_01",
+      "repository": "nist/juliet_test_suite",
+      "license": "CC0-1.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "cvefixes-cve-2021-44228-threat_analysis",
+      "source": "cvefixes",
+      "source_id": "CVE-2021-44228",
+      "repository": "apache/logging-log4j2",
+      "license": "CC-BY-4.0",
+      "is_synthetic": false,
+      "split": "train"
+    },
+    {
+      "sample_id": "cvefixes-cve-2022-21700-threat_analysis",
+      "source": "cvefixes",
+      "source_id": "CVE-2022-21700",
+      "repository": "matrix-org/matrix-react-sdk",
+      "license": "CC-BY-4.0",
+      "is_synthetic": false,
+      "split": "train"
+    },
+    {
+      "sample_id": "cvefixes-cve-2020-15084-threat_analysis",
+      "source": "cvefixes",
+      "source_id": "CVE-2020-15084",
+      "repository": "auth0/express-jwt",
+      "license": "CC-BY-4.0",
+      "is_synthetic": false,
+      "split": "train"
+    },
+    {
+      "sample_id": "cvefixes-cve-2021-44716-threat_analysis",
+      "source": "cvefixes",
+      "source_id": "CVE-2021-44716",
+      "repository": "golang/go",
+      "license": "CC-BY-4.0",
+      "is_synthetic": false,
+      "split": "train"
+    },
+    {
+      "sample_id": "cvefixes-cve-2016-10033-threat_analysis",
+      "source": "cvefixes",
+      "source_id": "CVE-2016-10033",
+      "repository": "PHPMailer/PHPMailer",
+      "license": "CC-BY-4.0",
+      "is_synthetic": false,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-threat_analysis-71402214",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-security_requirement-56f129c9",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-cwe_classify-c7ffab45",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-owasp_map-2b96b29a",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-risk_assess-5b4e15eb",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-vuln_analysis-e45afe85",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-security_plan-c16793af",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-capability_plan-c5d5753d",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-agent_plan-acbef9e9",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-evidence_analysis-2fd92ef5",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-repair-cf8e78e1",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-verify-5c60c477",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0000",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-threat_analysis-c5f1c05b",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-security_requirement-2b1115bf",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-cwe_classify-a1408714",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-owasp_map-f699e97e",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-risk_assess-e866b0ad",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-vuln_analysis-b7cb4cb0",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-security_plan-d9e7a419",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-capability_plan-953656e0",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-agent_plan-6ba42fad",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-evidence_analysis-41910682",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-repair-e232857e",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-verify-1d6a6a52",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0002",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-threat_analysis-24fa0488",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0003",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-security_requirement-9011e82e",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0003",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-cwe_classify-444d7e40",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0003",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-owasp_map-176c480a",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0003",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-risk_assess-cd24d568",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0003",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-vuln_analysis-c02909cb",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0003",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-security_plan-b32360f4",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0003",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-agent_plan-0a9cf89d",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0003",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-repair-49ed6456",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0003",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-verify-425e3238",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0003",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-threat_analysis-ac7485a6",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0004",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-security_requirement-0879324d",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0004",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-cwe_classify-490de233",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0004",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-owasp_map-d48f9b44",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0004",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-vuln_analysis-5f8d2fac",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0004",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-security_plan-150d57c5",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0004",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-capability_plan-bad8242c",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0004",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    },
+    {
+      "sample_id": "synth-banking-agent_plan-b884fc03",
+      "source": "synthetic_shiftguard",
+      "source_id": "synth_banking_scen0004",
+      "repository": "shiftguard/banking",
+      "license": "Apache-2.0",
+      "is_synthetic": true,
+      "split": "train"
+    }
+  ]
+}

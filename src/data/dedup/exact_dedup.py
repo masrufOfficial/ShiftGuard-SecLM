@@ -45,12 +45,20 @@ class ExactDeduplicator:
         self.seen_prompt_hashes: Set[str] = set()
         self.duplicates_filtered: int = 0
 
-    def is_duplicate(self, code: Optional[str] = None, prompt: Optional[str] = None, language: str = "python") -> bool:
+    def is_duplicate(
+        self,
+        code: Optional[str] = None,
+        prompt: Optional[str] = None,
+        language: str = "python",
+        task: Optional[str] = None,
+    ) -> bool:
         """Returns True if either normalized code or prompt has already been encountered."""
         is_dup = False
 
         if code:
             chash = compute_code_hash(code, language)
+            if task:
+                chash = f"{task}:{chash}"
             if chash in self.seen_code_hashes:
                 is_dup = True
             else:
@@ -58,6 +66,8 @@ class ExactDeduplicator:
 
         if prompt and not is_dup:
             phash = hashlib.sha256(prompt.strip().lower().encode("utf-8")).hexdigest()
+            if task:
+                phash = f"{task}:{phash}"
             if phash in self.seen_prompt_hashes:
                 is_dup = True
             else:
