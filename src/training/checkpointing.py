@@ -95,3 +95,4 @@ def load_checkpoint(
             train_state = torch.load(state_file, map_location=device)
 
     return model, config, train_state
+

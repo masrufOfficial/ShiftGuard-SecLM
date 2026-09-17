@@ -451,3 +451,4 @@ class SyntheticSecurityGenerator:
                 sample = self.generate_sample(arch, task, sample_idx=i)
                 samples.append(sample)
         return samples
+

@@ -103,3 +103,4 @@ def get_owasp_for_cwe(cwe_id: str) -> Optional[str]:
 def get_cwe_details(cwe_id: str) -> Optional[Dict[str, Any]]:
     """Retrieves taxonomy metadata for a CWE identifier."""
     return CWE_TAXONOMY.get(cwe_id.upper().strip())
+

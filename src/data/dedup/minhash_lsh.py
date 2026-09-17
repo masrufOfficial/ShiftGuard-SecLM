@@ -116,3 +116,4 @@ class MinHashLSH:
             self.tables[i][band_hash].append(key)
 
         return True
+

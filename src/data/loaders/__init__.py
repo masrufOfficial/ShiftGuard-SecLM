@@ -15,3 +15,4 @@ __all__ = [
     "get_owasp_for_cwe",
     "get_cwe_details",
 ]
+

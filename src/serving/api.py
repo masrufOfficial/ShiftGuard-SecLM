@@ -128,3 +128,4 @@ def analyze_security_context(request: AnalyzeRequest):
             risk=RiskDTO(severity="medium", score=5.0, confidence=0.5, explanation=gen_text),
             explanation=gen_text,
         )
+

@@ -138,3 +138,4 @@ def validate_json_schema(generated_text: str, expected_keys: Optional[List[str]]
         return True, data
     except Exception:
         return False, None
+

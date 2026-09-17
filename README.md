@@ -114,7 +114,7 @@ If you utilize ShiftGuard-SecLM in your research, please cite:
   author = {BUBT MSc Research Team},
   title = {ShiftGuard-SecLM: Security-Specialized Language Model for Contextual Shift-Left Security Reasoning in AI-Assisted Software Development},
   year = {2026},
-  url = {https://github.com/ShiftGuard-SecLM/ShiftGuard-SecLM}
+  url = {https://github.com/masrufOfficial/ShiftGuard-SecLM}
 }
 ```
 

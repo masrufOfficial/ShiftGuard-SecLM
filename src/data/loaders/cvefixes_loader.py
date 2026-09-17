@@ -77,3 +77,4 @@ class CVEFixesLoader:
                 is_synthetic=False,
             ),
         )
+
