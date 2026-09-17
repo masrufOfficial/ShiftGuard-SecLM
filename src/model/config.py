@@ -210,3 +210,32 @@ class ShiftGuardConfig:
             tie_embeddings=True,
         )
 
+    @classmethod
+    def research_1b(cls) -> ShiftGuardConfig:
+        """Primary ~1B research model with Grouped-Query Attention (993.61M parameters)."""
+        return cls(
+            model_name="ShiftGuard-SecLM-1B",
+            vocab_size=32000,
+            d_model=2048,
+            n_layers=20,
+            n_heads=16,
+            n_kv_heads=8,
+            d_ffn=5504,
+            max_seq_len=4096,
+            rope_theta=10000.0,
+            rms_norm_eps=1e-5,
+            dropout=0.0,
+            tie_embeddings=True,
+            use_bias=False,
+            use_scf=True,
+            initializer_range=0.02,
+        )
+
+    @classmethod
+    def research_1b_untied(cls) -> ShiftGuardConfig:
+        """~1B research model with untied embedding head (1,059.15M parameters)."""
+        cfg = cls.research_1b()
+        cfg.model_name = "ShiftGuard-SecLM-1B-Untied"
+        cfg.tie_embeddings = False
+        return cfg
+

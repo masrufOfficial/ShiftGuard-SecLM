@@ -46,20 +46,22 @@ Repair Guidance & Verification
 - **Backbone**: Decoder-only Causal Transformer trained from scratch.
 - **Normalization**: Pre-RMSNorm ($\epsilon = 10^{-5}$) for gradient stability without additive bias.
 - **Positioning**: Rotary Position Embeddings (RoPE) applied to query and key projections.
-- **Attention**: Causal Scaled Dot-Product Attention (SDPA) with Grouped-Query Attention (GQA) support.
+- **Attention**: Causal Scaled Dot-Product Attention (SDPA) with Grouped-Query Attention (GQA 2:1 ratio for 1B: 16 Query heads, 8 KV heads).
 - **FFN**: SwiGLU non-linear feed-forward network ($d_{\text{ffn}} = \frac{8}{3} d_{\text{model}}$).
 - **Security Context Fusion (SCF)**: Dedicated structured conditioning mechanism binding natural-language requirements, source code, metadata, and security findings into canonical representations.
 - **Output**: Machine-readable JSON schema with strict validation and natural-language explanations.
 
 ### Model Scaling Hierarchy
 
-| Configuration | Vocab | Hidden ($d$) | Layers ($L$) | Heads ($H$) | $d_{\text{ffn}}$ | Weight Tying | Parameters | Role |
+| Configuration | Vocab | Hidden ($d$) | Layers ($L$) | Heads ($H_q / H_{kv}$) | $d_{\text{ffn}}$ | Weight Tying | Parameters | Role |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Tiny / Smoke-Test** | 16,384 | 256 | 6 | 8 | 680 | Tied | **8.9M** | Local CPU tests & CI |
-| **Small / Pilot** | 32,000 | 768 | 12 | 12 | 2048 | Tied | **109.5M** | Fast Kaggle pilot runs |
-| **Research Target A** | 32,000 | 1024 | 24 | 16 | 2816 | Tied | **341.1M** | **Primary Research Model** |
-| **Research Target B** | 32,000 | 1024 | 24 | 16 | 2816 | Untied | **373.9M** | Untied head ablation |
-| **Research Target C** | 32,000 | 1280 | 24 | 16 | 3584 | Tied | **528.6M** | Upper scaling variant |
+| **ShiftGuard-SecLM-Tiny** | 16,384 | 256 | 6 | 8 / 8 | 680 | Tied | **8.9M** | Local CPU tests & CI |
+| **ShiftGuard-SecLM-Pilot-110M** | 32,000 | 768 | 12 | 12 / 12 | 2048 | Tied | **109.5M** | Fast Kaggle pilot runs |
+| **ShiftGuard-SecLM-341M** | 32,000 | 1024 | 24 | 16 / 16 | 2816 | Tied | **341.1M** | Research Baseline (V1) |
+| **ShiftGuard-SecLM-341M-Untied** | 32,000 | 1024 | 24 | 16 / 16 | 2816 | Untied | **373.9M** | Head untying ablation |
+| **ShiftGuard-SecLM-Scaled-528M** | 32,000 | 1280 | 24 | 16 / 16 | 3584 | Tied | **528.6M** | Upper scaling variant |
+| **ShiftGuard-SecLM-1B** | **32,000** | **2048** | **20** | **16 / 8 (GQA)** | **5504** | **Tied** | **993.6M** | **Primary Research Model (V2)** |
+| **ShiftGuard-SecLM-1B-Untied** | **32,000** | **2048** | **20** | **16 / 8 (GQA)** | **5504** | **Untied** | **1,059.1M** | Architecture Ablation |
 
 ---
 
