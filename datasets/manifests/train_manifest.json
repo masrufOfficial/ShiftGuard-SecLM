@@ -1,23 +1,24 @@
 {
   "split": "train",
   "filename": "train.jsonl",
-  "num_samples": 116,
-  "sha256": "df63c601779212d9fd4225ed215a319e0dfc79dad2f81c86910b49c1aa6e0708",
+  "num_samples": 220,
+  "sha256": "190815d85bfa5133924a89491afc2ba2409ed4d692345a82828c0efbfb8c8bd0",
   "tasks": {
-    "threat_analysis": 16,
-    "security_requirement": 13,
-    "cwe_classify": 12,
-    "risk_assess": 13,
-    "vuln_analysis": 12,
-    "security_plan": 13,
-    "verify": 7,
-    "owasp_map": 11,
-    "evidence_analysis": 9,
-    "repair": 5,
-    "agent_plan": 5
+    "threat_analysis": 30,
+    "security_requirement": 22,
+    "cwe_classify": 25,
+    "risk_assess": 21,
+    "vuln_analysis": 19,
+    "security_plan": 14,
+    "verify": 18,
+    "evidence_analysis": 19,
+    "repair": 22,
+    "owasp_map": 19,
+    "agent_plan": 11
   },
   "languages": {
-    "python": 75,
-    "javascript": 41
+    "python": 128,
+    "javascript": 91,
+    "java": 1
   }
 }

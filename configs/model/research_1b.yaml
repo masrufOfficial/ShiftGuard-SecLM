@@ -13,3 +13,4 @@ tie_embeddings: true
 use_bias: false
 use_scf: true
 initializer_range: 0.02
+

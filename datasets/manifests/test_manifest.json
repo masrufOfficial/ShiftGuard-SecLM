@@ -1,19 +1,21 @@
 {
   "split": "test",
   "filename": "test.jsonl",
-  "num_samples": 13,
-  "sha256": "f56b7bb765d981d2352ec1c050eae5b79569b732af8c58d88b4da3b4f8883c1c",
+  "num_samples": 20,
+  "sha256": "e87fde061040d1616737fd738145eb95202efaac74a7c88e38845954f36e71ea",
   "tasks": {
-    "threat_analysis": 3,
-    "security_requirement": 3,
-    "owasp_map": 2,
+    "threat_analysis": 4,
+    "security_requirement": 2,
+    "cwe_classify": 2,
+    "risk_assess": 3,
+    "owasp_map": 3,
+    "security_plan": 2,
     "evidence_analysis": 2,
-    "cwe_classify": 1,
-    "risk_assess": 1,
+    "repair": 1,
     "agent_plan": 1
   },
   "languages": {
     "go": 4,
-    "python": 9
+    "python": 16
   }
 }

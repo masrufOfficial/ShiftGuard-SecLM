@@ -67,7 +67,14 @@ MODEL_HOLDER = {}
 
 @app.on_event("startup")
 def load_model_on_startup():
-    ckpt_dir = os.environ.get("SHIFTGUARD_CHECKPOINT", "experiments/run_01/step_0000058")
+    default_ckpt = "experiments/run_01/step_0000058"
+    run_dir = Path("experiments/run_01")
+    if run_dir.exists():
+        ckpts = sorted(run_dir.glob("step_*"))
+        if ckpts:
+            default_ckpt = str(ckpts[-1])
+
+    ckpt_dir = os.environ.get("SHIFTGUARD_CHECKPOINT", default_ckpt)
     tok_dir = os.environ.get("SHIFTGUARD_TOKENIZER", "datasets/processed/tokenizer/tokenizer.json")
 
     if Path(ckpt_dir).exists() and Path(tok_dir).exists():

@@ -79,7 +79,7 @@ class LeakageSafeSplitter:
             else:
                 for item in cluster_items:
                     item.metadata.split = "test"
-                test_samples.append(cluster_items)
+                test_samples.extend(cluster_items)
 
         return train_samples, val_samples, test_samples
 

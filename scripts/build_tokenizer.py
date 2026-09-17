@@ -82,30 +82,71 @@ API10:2023 Unsafe Consumption of APIs
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="ShiftGuard-SecLM Tokenizer Builder")
+    parser.add_argument("--vocab-size", type=int, default=32000, help="Maximum vocabulary size")
+    parser.add_argument("--min-frequency", type=int, default=1, help="Minimum token frequency")
+    parser.add_argument("--output-dir", type=str, default="datasets/processed/tokenizer", help="Output directory")
+    args = parser.parse_args()
+
     corpus_dir = Path("datasets/samples")
     corpus_dir.mkdir(parents=True, exist_ok=True)
-    corpus_file = corpus_dir / "tokenizer_prototype_corpus.txt"
-    with open(corpus_file, "w", encoding="utf-8") as f:
-        f.write(SAMPLE_CORPUS * 50)  # Replicate to provide sufficient token frequency
+    corpus_file = corpus_dir / "tokenizer_complete_corpus.txt"
 
-    output_dir = Path("datasets/processed/tokenizer")
-    print(f"Building tokenizer on {corpus_file}...")
+    # Aggregate text from corpus_raw.jsonl and sample corpus
+    print("[1/3] Aggregating security text, code snippets, and vulnerability taxonomies...")
+    text_blocks = [SAMPLE_CORPUS * 10]
+
+    raw_jsonl = Path("datasets/processed/corpus_raw.jsonl")
+    if raw_jsonl.exists():
+        import json
+        with open(raw_jsonl, "r", encoding="utf-8") as f:
+            for line in f:
+                if not line.strip():
+                    continue
+                data = json.loads(line)
+                if "prompt" in data and data["prompt"]:
+                    text_blocks.append(data["prompt"])
+                if "code" in data and data["code"]:
+                    text_blocks.append(data["code"])
+                gt = data.get("ground_truth", {})
+                for threat in gt.get("threats", []):
+                    text_blocks.append(str(threat))
+                for req in gt.get("security_requirements", []):
+                    text_blocks.append(str(req))
+                for rep in gt.get("repair_guidance", []):
+                    text_blocks.append(str(rep))
+                for cwe in gt.get("cwe_ids", []):
+                    text_blocks.append(str(cwe))
+                for owasp in gt.get("owasp_categories", []):
+                    text_blocks.append(str(owasp))
+
+    with open(corpus_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(text_blocks))
+
+    print(f"  * Aggregated corpus written to {corpus_file} ({corpus_file.stat().st_size:,} bytes).")
+
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    print(f"\n[2/3] Training Byte-Level BPE tokenizer (Target Vocab: {args.vocab_size:,}, Min Freq: {args.min_frequency})...")
     tokenizer = train_security_tokenizer(
         training_files=[str(corpus_file)],
-        vocab_size=1000,  # Small prototype vocabulary for smoke testing
-        min_frequency=2,
+        vocab_size=args.vocab_size,
+        min_frequency=args.min_frequency,
         output_dir=output_dir,
     )
 
-    print(f"Tokenizer trained! Total vocabulary size: {tokenizer.get_vocab_size()}")
-    print(f"Special tokens registered: {len(ALL_SPECIAL_TOKENS)}")
+    print(f"  * Tokenizer successfully trained! Vocabulary size: {tokenizer.get_vocab_size():,}")
+    print(f"  * Special tokens registered: {len(ALL_SPECIAL_TOKENS)}")
 
     # Benchmark efficiency on representative test inputs
+    print("\n[3/3] Evaluating tokenizer compression & zero-OOV handling...")
     test_cases = {
         "Python SQLi": "cursor.execute('SELECT * FROM accounts WHERE id = ' + user_input)",
         "CWE Definition": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command",
         "OWASP Taxonomy": "OWASP A03:2021-Injection and API1:2023 Broken Object Level Authorization",
         "Special Tokens": "<SEC_CONTEXT> <LANG:python> <TASK:THREAT_ANALYSIS> <SCHEMA_START>",
+        "Hex/Bytecode Shellcode": "\\x31\\xc0\\x50\\x68\\x2f\\x2f\\x73\\x68\\x68\\x2f\\x62\\x69\\x6e",
     }
 
     results = test_tokenizer_efficiency(tokenizer, test_cases)
