@@ -7,7 +7,7 @@
 
 > **Security-Specialized Language Model for Contextual Shift-Left Security Reasoning in AI-Assisted Software Development**
 
-ShiftGuard-SecLM is an MSc-level research language model trained strictly **from scratch with random weight initialization**. It is specifically designed to perform proactive, contextual security reasoning across software requirements, developer prompts, multi-language source code, and security tool evidence (SAST/DAST/SCA).
+ShiftGuard-SecLM is a security research language model trained strictly **from scratch with random weight initialization**. It is specifically designed to perform proactive, contextual security reasoning across software requirements, developer prompts, multi-language source code, and security tool evidence (SAST/DAST/SCA).
 
 ShiftGuard-SecLM serves as the primary **text + code security intelligence component** intended to guide the future ShiftGuard multimodal, multi-agent Shift-Left security framework.
 
@@ -111,7 +111,7 @@ If you utilize ShiftGuard-SecLM in your research, please cite:
 
 ```bibtex
 @misc{shiftguard_seclm_2026,
-  author = {BUBT MSc Research Team},
+  author = {Masruf Rahman},
   title = {ShiftGuard-SecLM: Security-Specialized Language Model for Contextual Shift-Left Security Reasoning in AI-Assisted Software Development},
   year = {2026},
   url = {https://github.com/masrufOfficial/ShiftGuard-SecLM}

@@ -5,6 +5,7 @@
 - **Full Title**: Security-Specialized Language Model for Contextual Shift-Left Security Reasoning in AI-Assisted Software Development
 - **Architecture**: Decoder-only Causal Transformer (Pre-RMSNorm, RoPE, SwiGLU, Causal SDPA, Tied Embeddings)
 - **Parameter Count**: 341.1M (Research Target A) / 8.9M (Tiny Smoke) / 109.5M (Small Pilot)
+- **Author**: Masruf Rahman
 - **Initialization**: Strictly random weight initialization (trained from scratch)
 - **License**: Apache 2.0
 

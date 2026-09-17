@@ -2,7 +2,8 @@
 
 ## 1. Research Identity & Context
 - **Project Title**: ShiftGuard-SecLM: Security-Specialized Language Model for Contextual Shift-Left Security Reasoning in AI-Assisted Software Development
-- **Degree / Scope**: MSc Thesis Research $\to$ Conference Submission $\to$ Extended Journal Paper
+- **Principal Researcher / Author**: Masruf Rahman
+- **Scope**: Research Initiative $\to$ Conference Submission $\to$ Extended Journal Paper
 - **Core Principle**: ShiftGuard-SecLM is trained **strictly from scratch with random weight initialization**. It is neither a fine-tuned checkpoint of an existing LLM (e.g., Llama, Qwen, DeepSeek, CodeLlama) nor an API prompt wrapper.
 
 ## 2. Primary Research Question (PRQ)

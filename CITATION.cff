@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use ShiftGuard-SecLM in your research, please cite it as below."
 authors:
-  - family-names: "BUBT MSc Research Team"
-    given-names: "ShiftGuard Project"
+  - family-names: "Rahman"
+    given-names: "Masruf"
 title: "ShiftGuard-SecLM: Security-Specialized Language Model for Contextual Shift-Left Security Reasoning in AI-Assisted Software Development"
 version: 0.1.0
 date-released: 2026-09-18
