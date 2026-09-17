@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use ShiftGuard-SecLM in your research, please cite it as below."
+authors:
+  - family-names: "BUBT MSc Research Team"
+    given-names: "ShiftGuard Project"
+title: "ShiftGuard-SecLM: Security-Specialized Language Model for Contextual Shift-Left Security Reasoning in AI-Assisted Software Development"
+version: 0.1.0
+date-released: 2026-09-18
+url: "https://github.com/ShiftGuard-SecLM/ShiftGuard-SecLM"
+keywords:
+  - software-security
+  - shift-left-security
+  - large-language-models
+  - from-scratch-training
+  - transformer
+  - cwe
+  - owasp
+  - automated-repair
+

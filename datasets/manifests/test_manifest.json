@@ -1,0 +1,19 @@
+{
+  "split": "test",
+  "filename": "test.jsonl",
+  "num_samples": 13,
+  "sha256": "f56b7bb765d981d2352ec1c050eae5b79569b732af8c58d88b4da3b4f8883c1c",
+  "tasks": {
+    "threat_analysis": 3,
+    "security_requirement": 3,
+    "owasp_map": 2,
+    "evidence_analysis": 2,
+    "cwe_classify": 1,
+    "risk_assess": 1,
+    "agent_plan": 1
+  },
+  "languages": {
+    "go": 4,
+    "python": 9
+  }
+}

@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shiftguard-seclm"
+version = "0.1.0"
+description = "Security-Specialized Language Model for Contextual Shift-Left Security Reasoning in AI-Assisted Software Development"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+authors = [
+    { name = "BUBT MSc Research Team" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Security",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "torch>=2.0.0",
+    "tokenizers>=0.15.0",
+    "pydantic>=2.0.0",
+    "pyyaml>=6.0",
+    "safetensors>=0.4.0",
+    "rich>=13.0.0",
+    "tqdm>=4.65.0",
+]
+
+[project.optional-dependencies]
+train = [
+    "accelerate>=0.25.0",
+    "bitsandbytes>=0.41.0; sys_platform != 'win32'",
+    "wandb>=0.16.0",
+    "scipy>=1.10.0",
+]
+eval = [
+    "scikit-learn>=1.3.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "pandas>=2.0.0",
+]
+serving = [
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+]
+dev = [
+    "pytest>=7.4.0",
+    "black>=23.9.0",
+    "ruff>=0.1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["*"]
+

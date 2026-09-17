@@ -1,0 +1,6 @@
+-r base.txt
+accelerate>=0.25.0
+bitsandbytes>=0.41.0; sys_platform != 'win32'
+wandb>=0.16.0
+scipy>=1.10.0
+

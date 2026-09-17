@@ -1,0 +1,3050 @@
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs
+
+# Python Security Example
+import sqlite3
+import hashlib
+from fastapi import FastAPI, HTTPException, Depends
+
+app = FastAPI(title="Secure Banking API")
+
+def authenticate_user(db: sqlite3.Connection, username: str, password_hash: str):
+    # Parameterized SQL query preventing CWE-89 (SQL Injection)
+    cursor = db.cursor()
+    cursor.execute("SELECT id, role FROM users WHERE username = ? AND password = ?", (username, password_hash))
+    user = cursor.fetchone()
+    if not user:
+        raise HTTPException(status_code=401, detail="Authentication failed")
+    return {"id": user[0], "role": user[1]}
+
+// JavaScript / Express Example
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+app.use(helmet()); // OWASP A05:2021 Security Misconfiguration defense
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // CWE-770: Allocation of Resources Without Limits or Throttling
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Security Evidence JSON
+{
+  "finding_id": "SEC-FINDING-001",
+  "tool": "semgrep",
+  "rule": "python.lang.security.audit.sqli.psycopg2",
+  "cwe": "CWE-89",
+  "owasp": "A03:2021-Injection",
+  "severity": "HIGH",
+  "file": "app/services/billing.py",
+  "line": 104,
+  "confidence": 0.94,
+  "recommendation": "Use parameterized queries or SQLAlchemy ORM sessions instead of raw string formatting."
+}
+
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component.
+
+OWASP API Security Top 10:
+API1:2023 Broken Object Level Authorization (BOLA)
+API2:2023 Broken Authentication
+API3:2023 Broken Object Property Level Authorization
+API4:2023 Unrestricted Resource Consumption
+API5:2023 Broken Function Level Authorization
+API6:2023 Unrestricted Access to Sensitive Business Flows
+API7:2023 Server Side Request Forgery
+API8:2023 Security Misconfiguration
+API9:2023 Improper Inventory Management
+API10:2023 Unsafe Consumption of APIs

@@ -1,0 +1,23 @@
+{
+  "split": "train",
+  "filename": "train.jsonl",
+  "num_samples": 116,
+  "sha256": "df63c601779212d9fd4225ed215a319e0dfc79dad2f81c86910b49c1aa6e0708",
+  "tasks": {
+    "threat_analysis": 16,
+    "security_requirement": 13,
+    "cwe_classify": 12,
+    "risk_assess": 13,
+    "vuln_analysis": 12,
+    "security_plan": 13,
+    "verify": 7,
+    "owasp_map": 11,
+    "evidence_analysis": 9,
+    "repair": 5,
+    "agent_plan": 5
+  },
+  "languages": {
+    "python": 75,
+    "javascript": 41
+  }
+}
